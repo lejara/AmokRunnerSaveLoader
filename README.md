@@ -28,7 +28,7 @@ It simply replaces your save folder with the chosen save
 0. Download/Install [python](https://www.python.org/downloads/)
 1. Download/Extract this repo
 2. Open Command Prompt and `cd` to the extacted repo directory
-2. In Command Prompt enter `pip install PyQt6-Qt6`. This is its only dependency
+2. In Command Prompt enter `pip install PyQt6`. This is its only dependency
 4. Then enter `python Script/AmokSaveLoader.py`. To run the tool
 
 ## Compile To Exe Command
