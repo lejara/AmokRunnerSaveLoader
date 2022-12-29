@@ -14,6 +14,11 @@ gameSavePath = "{0}\Amok\Saved".format(os.getenv('LOCALAPPDATA'))
 gameSaveFolder = "{0}\SaveGames".format(gameSavePath)
 chPSavesPath = ".\Saves\\"
 
+# Remove Current Game Save
+def ClearSave():
+    if os.path.isdir(gameSaveFolder):
+        shutil.rmtree(gameSaveFolder)
+
 # Window 
 class BackgroundColor(QWidget):
     def __init__(self):
@@ -33,11 +38,13 @@ class SaveBtn(QPushButton):
                             "QPushButton { background-color: #465146; color: white; outline: none; font-weight: bold;  padding-top: 10px; padding-bottom: 10px; font-size: 13px }" )
 
 class ALabel(QLabel):
+    defualtStyle = None
     def __init__(self, parent=None, style=None):
         QLabel.__init__(self, parent)
         if style == None:
             style = "QLabel { color: white }"
         self.setStyleSheet(style)
+        self.defualtStyle = style
 
 
 class SaveButtonsSrcollArea(QScrollArea):
@@ -96,6 +103,14 @@ class LoaderWindow(QMainWindow):
 
         self.populateCheckPointButtons(scrollLayout, checkPoints)
 
+        # clearSave button
+        clearSaveBtn = QPushButton()
+        clearSaveBtn.setText("Clear Save")
+        clearSaveBtn.setStyleSheet("QPushButton { border: none; background: red; color: white; font-weight: bold; padding: 5px 0 5px 0; font-size: 13px }")
+        clearSaveBtn.setFixedWidth(75)
+        clearSaveBtn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        clearSaveBtn.clicked.connect(lambda checked: self.onClearSave())   
+
         # Footer
         footerLayout = QHBoxLayout()
         author = ALabel("Made by: Leption")
@@ -116,13 +131,12 @@ class LoaderWindow(QMainWindow):
         footerLayout.addWidget(author)
 
   
-        
-
         # Add all widget to mainLayout
         mainLayout.addWidget(title)
         mainLayout.addWidget(Instructions)
         mainLayout.addWidget(self.status)
         mainLayout.addWidget(buttonsWidget)
+        mainLayout.addWidget(clearSaveBtn, alignment=Qt.AlignmentFlag.AlignCenter)
         mainLayout.addLayout(footerLayout)
 
 
@@ -138,13 +152,19 @@ class LoaderWindow(QMainWindow):
             button.clicked.connect(lambda checked, chP=checkPoints[i]: self.loadSave(chP))   
             layout.addWidget(button)
     
-    def sendStatus(self, text):
+    def sendStatus(self, text, style=None):
         self.status.setText(text)
-        
+        if style != None:
+            self.status.setStyleSheet(style)
+        else:
+            self.status.setStyleSheet(self.status.defualtStyle)
+
+    def onClearSave(self):
+        ClearSave()
+        self.sendStatus("Save Cleared", "QLabel { color: red; font-weight: bold; font-size: 15px }")
+
     def loadSave(self, checkPoint):
-        # Remove Current Game Save
-        if os.path.isdir(gameSaveFolder):
-            shutil.rmtree(gameSaveFolder)
+        ClearSave()
 
         # Add our save
         shutil.copytree(checkPoint.path, gameSaveFolder)
