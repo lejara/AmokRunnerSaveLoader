@@ -25,7 +25,7 @@ It simply replaces your save folder with the chosen save
  
 # Run from source
 
-0. Download [python](https://www.python.org/downloads/)
+0. Download/Install [python](https://www.python.org/downloads/)
 1. Download/Extract this repo
 2. Open Command Prompt and `cd` to the extacted repo directory
 2. In Command Prompt enter `pip install PyQt6-Qt6`. This is its only dependency
