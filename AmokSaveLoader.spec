@@ -8,7 +8,7 @@ a = Analysis(
     ['Script\\AmokSaveLoader.py'],
     pathex=[],
     binaries=[],
-    datas=[('./Saves', 'Saves/')],
+    datas=[('./Saves', 'Saves/'), ('./static', 'static/')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
