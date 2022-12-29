@@ -5,7 +5,7 @@ block_cipher = None
 
 
 a = Analysis(
-    ['Scirpt\\AmokSaveLoader.py'],
+    ['Script\\AmokSaveLoader.py'],
     pathex=[],
     binaries=[],
     datas=[('./Saves', 'Saves/')],
@@ -37,7 +37,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['Scirpt\\icon.ico'],
+    icon=['Script\\icon.ico'],
 )
 coll = COLLECT(
     exe,
