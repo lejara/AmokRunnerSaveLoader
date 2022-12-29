@@ -2,9 +2,10 @@ import os
 import sys
 import shutil
 import re
-from PyQt6.QtGui import QIcon, QPixmap, QPalette, QColor
+from PyQt6.QtGui import QIcon, QPixmap, QPalette, QColor, QCursor
 from PyQt6.QtCore import QSize, Qt
 from PyQt6.QtWidgets import *
+import webbrowser
 
 VERSION = "1.2"
 
@@ -27,7 +28,7 @@ class SaveBtn(QPushButton):
     def __init__(self):
         super(SaveBtn, self).__init__()
         self.setAutoFillBackground(True)
-
+        self.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.setStyleSheet("QPushButton:hover { background-color: #6a7b6a; }" 
                             "QPushButton { background-color: #465146; color: white; outline: none; font-weight: bold;  padding-top: 10px; padding-bottom: 10px; font-size: 13px }" )
 
@@ -51,7 +52,6 @@ class SaveButtonsSrcollArea(QScrollArea):
 
             "/*Handle */"
             "QScrollBar::handle:vertical {	background-color: gray ; min-height: 30px; border-radius: 7px; }"
-            "QScrollBar::handle:vertical:hover{	background-color: black }"
 
             "/* Buttons */"
             "QScrollBar::sub-line:vertical { border: none; background-color: transparent; height: 15px;border-top-left-radius: 7px;border-top-right-radius: 7px;subcontrol-position: top;subcontrol-origin: margin;} "
@@ -66,7 +66,7 @@ class LoaderWindow(QMainWindow):
 
     def __init__(self, checkPoints):
         super().__init__()        
-        self.setWindowIcon(QIcon("./icon.png"))
+        self.setWindowIcon(QIcon("static/icon.ico"))
         self.setWindowTitle("Amok Runner Save Loader v{0}".format(VERSION))
         # self.setMinimumWidth(500)
         self.setGeometry(600, 100, 400, 550)
@@ -78,7 +78,7 @@ class LoaderWindow(QMainWindow):
         title.setAlignment(Qt.AlignmentFlag.AlignCenter)    
         Instructions = ALabel("Click a Save then in-game \"Load The Last Checkpoint\"")
         Instructions.setAlignment(Qt.AlignmentFlag.AlignCenter)    
-        self.status = ALabel("", "QLabel { color: #AECF67; font-weight: bold; font-size: 15px }")
+        self.status = ALabel("", "QLabel { color: #D1FF6D; font-weight: bold; font-size: 15px }")
         self.status.setAlignment(Qt.AlignmentFlag.AlignCenter)     
        
         # save buttons layout with scroll
@@ -100,12 +100,23 @@ class LoaderWindow(QMainWindow):
         footerLayout = QHBoxLayout()
         author = ALabel("Made by: Leption")
         author.setAlignment(Qt.AlignmentFlag.AlignRight)        
-        spacelabel = ALabel("")
+   
+        githubIcon = QIcon(QPixmap("static/github.png"))
+        githubBtn = QPushButton()
+        githubBtn.setStyleSheet("QPushButton { border: none; background: none; }")
+        githubBtn.setFixedWidth(17)
+        githubBtn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        githubBtn.clicked.connect(lambda checked: webbrowser.open("https://github.com/lejara/AmokRunnerSaveLoader"))   
+        githubBtn.setIcon(githubIcon)
+
         version = ALabel("v{0}".format(VERSION))
+
         footerLayout.addWidget(version)
-        footerLayout.addWidget(spacelabel)
+        footerLayout.addWidget(githubBtn)
         footerLayout.addWidget(author)
 
+  
+        
 
         # Add all widget to mainLayout
         mainLayout.addWidget(title)
