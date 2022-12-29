@@ -20,7 +20,7 @@ It simply replaces your save folder with the chosen save
  - Missing `AmokSaveLoader.exe`
  
  On some windows defender versions and/or any antivirus. It will detect a false postive and remove the exe. Simply recover the file in your antivirus.
- If you have issues doing so, you can run the tool from the source. If you know how to.
+ If you have issues doing so, you can run the tool from the source.
  
  
 # Run from source
