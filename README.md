@@ -47,5 +47,5 @@ If you have issues doing so, you can run the tool from the source.
 This is the command i use to compile to exe. For those who like to vet this tool.
 
 ```
-pyinstaller --noconfirm --onedir --windowed --icon "./Script/icon.ico" --add-data "./Saves;Saves/" --add-data "./static;static/" "./Script/AmokSaveLoader.py"
+pyinstaller --noconfirm --onedir --windowed --icon "./static/icon.png" --add-data "./Saves;Saves/" --add-data "./static;static/" "./Script/AmokSaveLoader.py"
 ```

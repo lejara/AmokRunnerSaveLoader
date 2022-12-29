@@ -73,7 +73,7 @@ class LoaderWindow(QMainWindow):
 
     def __init__(self, checkPoints):
         super().__init__()        
-        self.setWindowIcon(QIcon("static/icon.ico"))
+        self.setWindowIcon(QIcon("static/icon.png"))
         self.setWindowTitle("Amok Runner Save Loader v{0}".format(VERSION))
         # self.setMinimumWidth(500)
         self.setGeometry(600, 100, 400, 550)
