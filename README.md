@@ -4,13 +4,6 @@ Allows you to load any of the checkpoints in the game [Amok Runner](https://stor
 
 ![Screenshot](https://i.imgur.com/ZiCQFKX.jpeg)
 
-#### You can as well add in your own saves in the `Saves` folder of the extracted zip.
-
-Make sure it follows the structure:
-``` 
-└─(save folder name)
-   └─SaveGames
-```
 # How to Use
 
 1. Download Zip [Here](https://github.com/lejara/AmokRunnerSaveLoader/releases)
@@ -18,6 +11,15 @@ Make sure it follows the structure:
 3. Run "AmokSaveLoader.exe"
 4. Click on a save
 5. in-game "Load The Last Checkpoint"
+
+# Your own Saves
+#### You can as well add in your own saves in the `Saves` folder of the extracted zip.
+
+Make sure it follows the structure:
+``` 
+└─(save folder name)
+   └─SaveGames
+```
 
 # How does it work?
 
