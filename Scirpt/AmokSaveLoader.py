@@ -8,7 +8,7 @@ from PyQt6.QtWidgets import *
 
 # TODO: add instructions
 
-VERSION = "1.0"
+VERSION = "1.1"
 
 # Locators
 gameSavePath = "{0}\Amok\Saved".format(os.getenv('LOCALAPPDATA'))
