@@ -14,7 +14,7 @@ Allows you to load any of the checkpoints or your own in the game [Amok Runner](
 
 # Your own Saves
 
-#### You can as well add in your own saves in the `Saves` folder of the extracted zip.
+#### You can add in your own saves in the `Saves` folder of the extracted zip.
 
 Make sure it follows the structure:
 
