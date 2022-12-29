@@ -1,5 +1,5 @@
 # AmokRunnerSaveLoader
-Allows you to load checkpoint saves using a GUI
+Allows you to load any of the checkpoints in the game [Amok Runner](https://store.steampowered.com/app/2077650/Amok_Runner/) using a GUI
 
 # How to Use
 1. Unzip "AmokSaveLoader.zip"
