@@ -1,9 +1,16 @@
 # Amok Runner Save Loader
 
-Allows you to load any of the checkpoints in the game [Amok Runner](https://store.steampowered.com/app/2077650/Amok_Runner/) using a GUI
+Allows you to load any of the checkpoints in the game [Amok Runner](https://store.steampowered.com/app/2077650/Amok_Runner/) using a GUI.
 
 ![Screenshot](https://i.imgur.com/ZiCQFKX.jpeg)
 
+#### You can as well add in your own saves in the `Saves` folder of the extracted zip.
+
+Make sure it follows the structure:
+``` 
+└─(save folder name)
+   └─SaveGames
+```
 # How to Use
 
 1. Download Zip [Here](https://github.com/lejara/AmokRunnerSaveLoader/releases)
