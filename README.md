@@ -2,7 +2,7 @@
 
 Allows you to load any of the checkpoints or your own in the game [Amok Runner](https://store.steampowered.com/app/2077650/Amok_Runner/) using a GUI.
 
-![Screenshot](https://i.imgur.com/ZiCQFKX.jpeg)
+![Screenshot](https://i.imgur.com/DeGHWnk.png)
 
 # How to Use
 
