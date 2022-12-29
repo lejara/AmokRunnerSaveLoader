@@ -1,4 +1,4 @@
-# AmokRunnerSaveLoader
+# Amok Runner Save Loader
 Allows you to load any of the checkpoints in the game [Amok Runner](https://store.steampowered.com/app/2077650/Amok_Runner/) using a GUI
 
 # How to Use
