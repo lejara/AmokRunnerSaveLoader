@@ -8,7 +8,7 @@ a = Analysis(
     ['Script\\AmokSaveLoader.py'],
     pathex=[],
     binaries=[],
-    datas=[('./Saves', 'Saves/')],
+    datas=[('./Saves', 'Saves/'), ('./static', 'static/')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -37,7 +37,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['Script\\icon.ico'],
+    icon=['static\\icon.png'],
 )
 coll = COLLECT(
     exe,
