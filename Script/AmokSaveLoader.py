@@ -8,7 +8,7 @@ from PyQt6.QtWidgets import *
 import webbrowser
 import glob
 
-VERSION = "1.3"
+VERSION = "1.4"
 
 # Locators
 gameSavePath = "{0}\Amok\Saved".format(os.getenv('LOCALAPPDATA'))
