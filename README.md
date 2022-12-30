@@ -39,7 +39,7 @@ If you have issues doing so, you can run the tool from the source.
 0. Download/Install [python](https://www.python.org/downloads/)
 1. Download/Extract this repo
 2. Open Command Prompt and `cd` to the extacted repo directory
-3. In Command Prompt enter `pip install PyQt6`. This is its only dependency
+3. In Command Prompt enter `pip install -r requirements.txt`
 4. Then enter `python Script/AmokSaveLoader.py`. To run the tool
 
 ## Compile To Exe Command
