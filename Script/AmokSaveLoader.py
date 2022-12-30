@@ -15,17 +15,6 @@ gameSavePath = "{0}\Amok\Saved".format(os.getenv('LOCALAPPDATA'))
 gameSaveFolder = "{0}\SaveGames".format(gameSavePath)
 chPSavesPath = ".\Saves\\"
 
-# Remove Current Game Save
-def ClearSave():
-    if os.path.isdir(gameSaveFolder):
-        files = glob.glob(os.path.join(gameSaveFolder, "AmokEpisode*"))
-        stateFile = os.path.join(gameSaveFolder, "AmokState.sav")
-        if os.path.exists(stateFile):
-            files.append(stateFile)
-        
-        for file in files:
-            os.remove(file)
-
 # Window 
 class BackgroundColor(QWidget):
     def __init__(self):
@@ -82,12 +71,9 @@ class LoaderWindow(QMainWindow):
         super().__init__()        
         self.setWindowIcon(QIcon("static/icon.png"))
         self.setWindowTitle("Amok Runner Save Loader v{0}".format(VERSION))
-        # self.setMinimumWidth(500)
         self.setGeometry(600, 100, 400, 550)
 
-        # main layout
-        mainLayout = QVBoxLayout()
-
+        # Header
         title = ALabel("Amok Runner Save Loader", "QLabel { color: white; font-weight: bold; font-size: 23px }")
         title.setAlignment(Qt.AlignmentFlag.AlignCenter)    
         Instructions = ALabel("Click a Save then in-game \"Load The Last Checkpoint\"")
@@ -95,7 +81,7 @@ class LoaderWindow(QMainWindow):
         self.status = ALabel("", "QLabel { color: #D1FF6D; font-weight: bold; font-size: 15px }")
         self.status.setAlignment(Qt.AlignmentFlag.AlignCenter)     
        
-        # save buttons layout with scroll
+        # Save buttons with scroll
         buttonsWidget = QWidget()
         buttonsLayout = QVBoxLayout(buttonsWidget)  
         buttonsWidget.setLayout(buttonsLayout)
@@ -110,13 +96,13 @@ class LoaderWindow(QMainWindow):
 
         self.populateCheckPointButtons(scrollLayout, checkPoints)
 
-        # clearSave button
+        # Clear save button
         clearSaveBtn = QPushButton()
         clearSaveBtn.setText("Clear Save")
         clearSaveBtn.setStyleSheet("QPushButton { border: none; background: red; color: white; font-weight: bold; padding: 5px 0 5px 0; font-size: 13px }")
         clearSaveBtn.setFixedWidth(75)
         clearSaveBtn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        clearSaveBtn.clicked.connect(lambda checked: self.onClearSave())   
+        clearSaveBtn.clicked.connect(lambda checked: self.onClearSaveBtn())   
 
         # Footer
         footerLayout = QHBoxLayout()
@@ -139,6 +125,7 @@ class LoaderWindow(QMainWindow):
 
   
         # Add all widget to mainLayout
+        mainLayout = QVBoxLayout()
         mainLayout.addWidget(title)
         mainLayout.addWidget(Instructions)
         mainLayout.addWidget(self.status)
@@ -146,8 +133,6 @@ class LoaderWindow(QMainWindow):
         mainLayout.addWidget(clearSaveBtn, alignment=Qt.AlignmentFlag.AlignCenter)
         mainLayout.addLayout(footerLayout)
 
-
-        # init
         background = BackgroundColor()
         background.setLayout(mainLayout)
         self.setCentralWidget(background)
@@ -156,7 +141,7 @@ class LoaderWindow(QMainWindow):
         for i in range(len(checkPoints)):
             button = SaveBtn()
             button.setText("{1}".format(i + 1, checkPoints[i].name))
-            button.clicked.connect(lambda checked, chP=checkPoints[i]: self.loadSave(chP))   
+            button.clicked.connect(lambda checked, chP=checkPoints[i]: self.onSaveBtn(chP))   
             layout.addWidget(button)
     
     def sendStatus(self, text, style=None):
@@ -166,12 +151,22 @@ class LoaderWindow(QMainWindow):
         else:
             self.status.setStyleSheet(self.status.defualtStyle)
 
-    def onClearSave(self):
-        ClearSave()
+    def clearSave(self):
+        if os.path.isdir(gameSaveFolder):
+            files = glob.glob(os.path.join(gameSaveFolder, "AmokEpisode*"))
+            stateFile = os.path.join(gameSaveFolder, "AmokState.sav")
+        if os.path.exists(stateFile):
+            files.append(stateFile)
+        
+        for file in files:
+            os.remove(file)
+
+    def onClearSaveBtn(self):
+        self.clearSave()
         self.sendStatus("Save Cleared", "QLabel { color: red; font-weight: bold; font-size: 15px }")
 
-    def loadSave(self, checkPoint):
-        ClearSave()
+    def onSaveBtn(self, checkPoint):
+        self.clearSave()
 
         # Add our save
         shutil.copytree(checkPoint.path, gameSaveFolder, dirs_exist_ok=True)
@@ -197,7 +192,7 @@ if __name__ == "__main__":
 
     checkPointFolderNames.sort(key=natural_keys)
 
-    # Setup Check Point Metadata
+    # Setup CheckPoints
     class CheckPointSave(object):
         path=None
         name=None
