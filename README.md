@@ -2,7 +2,7 @@
 
 Allows you to load any of the preloaded saves or your own in [Amok Runner](https://store.steampowered.com/app/2077650/Amok_Runner/) using a GUI.
 
-![Screenshot](https://i.imgur.com/DeGHWnk.png)
+![Screenshot](https://i.imgur.com/6EyOxLY.jpg)
 
 # How to Use
 
