@@ -6,6 +6,7 @@ from PyQt6.QtGui import QIcon, QPixmap, QPalette, QColor, QCursor
 from PyQt6.QtCore import QSize, Qt
 from PyQt6.QtWidgets import *
 import webbrowser
+import glob
 
 VERSION = "1.2"
 
@@ -17,7 +18,13 @@ chPSavesPath = ".\Saves\\"
 # Remove Current Game Save
 def ClearSave():
     if os.path.isdir(gameSaveFolder):
-        shutil.rmtree(gameSaveFolder)
+        files = glob.glob(os.path.join(gameSaveFolder, "AmokEpisode*"))
+        stateFile = os.path.join(gameSaveFolder, "AmokState.sav")
+        if os.path.exists(stateFile):
+            files.append(stateFile)
+        
+        for file in files:
+            os.remove(file)
 
 # Window 
 class BackgroundColor(QWidget):
@@ -167,7 +174,7 @@ class LoaderWindow(QMainWindow):
         ClearSave()
 
         # Add our save
-        shutil.copytree(checkPoint.path, gameSaveFolder)
+        shutil.copytree(checkPoint.path, gameSaveFolder, dirs_exist_ok=True)
         self.sendStatus("Loaded: {0}".format(checkPoint.name))
 
 
