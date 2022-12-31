@@ -166,11 +166,22 @@ class LoaderWindow(QMainWindow):
         self.sendStatus("Save Cleared", "QLabel { color: red; font-weight: bold; font-size: 15px }")
 
     def onSaveBtn(self, checkPoint):
+        if not self.isCorrectSaveStructure(checkPoint):
+            return
+
         self.clearSave()
 
         # Add our save
         shutil.copytree(checkPoint.path, gameSaveFolder, dirs_exist_ok=True)
         self.sendStatus("Loaded: {0}".format(checkPoint.name))
+    
+    def isCorrectSaveStructure(self, checkPoint):
+            if not os.path.isdir(checkPoint.path):
+                self.sendStatus("Failed To Load: \"{0}\". Make sure strucutre is correct.\n Check github repo for more info.".format(checkPoint.name), "QLabel { color: red; font-weight: bold; font-size: 13px }")
+                return False
+            return True
+
+
 
 
 if __name__ == "__main__":
